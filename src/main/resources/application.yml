@@ -7,3 +7,6 @@ spring:
     username: root
     password: mindzen
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
