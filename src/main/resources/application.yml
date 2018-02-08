@@ -1,7 +1,11 @@
 server:
   port: 8086
-  
 spring:
+  profiles:
+    active: h2
+---
+spring:
+  profile: mysql
   datasource:
     url: jdbc:mysql://localhost:3306/tech-demo
     username: root
@@ -10,3 +14,19 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: true
+---    
+spring:
+  profile: h2
+  h2:
+    console:
+      enabled: true
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+    show-sql: true
+logging:
+  level:
+    org.hibernate.stat: debug
+    org.hibernate.type: trace
