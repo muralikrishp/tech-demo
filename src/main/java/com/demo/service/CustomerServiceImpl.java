@@ -12,7 +12,6 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Override
 	public Customer findCustomer() {
 		Customer customer = new Customer();
 		customer.setName("Murli");

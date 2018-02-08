@@ -5,28 +5,38 @@ spring:
     active: h2
 ---
 spring:
-  profile: mysql
-  datasource:
-    url: jdbc:mysql://localhost:3306/tech-demo
-    username: root
-    password: mindzen
-    driver-class-name: com.mysql.jdbc.Driver
-  jpa:
-    generate-ddl: true
-    show-sql: true
----    
-spring:
-  profile: h2
+  profiles: h2
   h2:
     console:
       enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
   jpa:
     properties:
       hibernate:
         generate_statistics: true
         format_sql: true
-    show-sql: true
-logging:
+        ddl-auto: update
+        show_sql: false
+        use_sql_comments: false
+        database-platform: org.hibernate.dialect.H2Dialect
   level:
     org.hibernate.stat: debug
     org.hibernate.type: trace
+  datasource:
+    url: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    
+#spring:
+#  profile: mysql
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/tech-demo
+#    username: root
+#    password: mindzen
+#    driver-class-name: com.mysql.jdbc.Driver
+    
